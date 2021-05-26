@@ -79,6 +79,10 @@ public class PushNotificationsPlugin extends Plugin {
 
     @PluginMethod
     public void register(PluginCall call) {
+        String notificationHubName = call.options["notificationHubName"];
+        String connectionString = call.options["connectionString"];
+        NotificationHub.start(this.getApplication(), notificationHubName, connectionString);
+
         FirebaseMessaging.getInstance().setAutoInitEnabled(true);
         FirebaseInstanceId
             .getInstance()
