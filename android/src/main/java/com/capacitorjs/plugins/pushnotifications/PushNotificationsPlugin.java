@@ -8,6 +8,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.service.notification.StatusBarNotification;
+
+import androidx.annotation.NonNull;
+
 import com.getcapacitor.Bridge;
 import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
@@ -17,8 +20,11 @@ import com.getcapacitor.PluginHandle;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.annotation.Permission;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -27,8 +33,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.microsoft.windowsazure.messaging.NotificationHub;
 
-@CapacitorPlugin(name = "PushNotifications", permissions = @Permission(strings = {}, alias = "receive"))
+@CapacitorPlugin(name = "AzurePushNotifications", permissions = @Permission(strings = {}, alias = "receive"))
 public class PushNotificationsPlugin extends Plugin {
 
     public static Bridge staticBridge = null;
@@ -41,6 +48,7 @@ public class PushNotificationsPlugin extends Plugin {
     private static final String EVENT_TOKEN_ERROR = "registrationError";
 
     public void load() {
+
         notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
         firebaseMessagingService = new MessagingService();
 
@@ -52,6 +60,7 @@ public class PushNotificationsPlugin extends Plugin {
 
         notificationChannelManager = new NotificationChannelManager(getActivity(), notificationManager);
     }
+
 
     @Override
     protected void handleOnNewIntent(Intent data) {
@@ -79,12 +88,15 @@ public class PushNotificationsPlugin extends Plugin {
 
     @PluginMethod
     public void register(PluginCall call) {
-        String notificationHubName = call.options["notificationHubName"];
-        String connectionString = call.options["connectionString"];
-        NotificationHub.start(this.getApplication(), notificationHubName, connectionString);
+        String notificationHubName = call.getData().getString("notificationHubName");
+        String connectionString =call.getData().getString("connectionString");
+
+        NotificationHub hub = new NotificationHub(notificationHubName, connectionString, getApplicationContext());
 
         FirebaseMessaging.getInstance().setAutoInitEnabled(true);
-        FirebaseInstanceId
+
+
+       FirebaseInstanceId
             .getInstance()
             .getInstanceId()
             .addOnSuccessListener(
@@ -255,5 +267,9 @@ public class PushNotificationsPlugin extends Plugin {
             return (PushNotificationsPlugin) handle.getInstance();
         }
         return null;
+    }
+
+    private Context getApplicationContext() {
+        return this.getActivity().getApplicationContext();
     }
 }
