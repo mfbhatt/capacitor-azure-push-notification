@@ -117,9 +117,6 @@ On Android, there are various system and app states that can affect the delivery
 * [`getDeliveredNotifications()`](#getdeliverednotifications)
 * [`removeDeliveredNotifications(...)`](#removedeliverednotifications)
 * [`removeAllDeliveredNotifications()`](#removealldeliverednotifications)
-* [`createChannel(...)`](#createchannel)
-* [`deleteChannel(...)`](#deletechannel)
-* [`listChannels()`](#listchannels)
 * [`checkPermissions()`](#checkpermissions)
 * [`requestPermissions()`](#requestpermissions)
 * [`addListener('registration', ...)`](#addlistenerregistration-)
@@ -201,72 +198,13 @@ Remove all the notifications from the notifications screen.
 --------------------
 
 
-### createChannel(...)
-
-```typescript
-createChannel(channel: Channel) => Promise<void>
-```
-
-Create a notification channel.
-
-Only available on Android O or newer (SDK 26+).
-
-| Param         | Type                                        |
-| ------------- | ------------------------------------------- |
-| **`channel`** | <code><a href="#channel">Channel</a></code> |
-
-**Since:** 1.0.0
-
---------------------
-
-
-### deleteChannel(...)
-
-```typescript
-deleteChannel(channel: Channel) => Promise<void>
-```
-
-Delete a notification channel.
-
-Only available on Android O or newer (SDK 26+).
-
-| Param         | Type                                        |
-| ------------- | ------------------------------------------- |
-| **`channel`** | <code><a href="#channel">Channel</a></code> |
-
-**Since:** 1.0.0
-
---------------------
-
-
-### listChannels()
-
-```typescript
-listChannels() => Promise<ListChannelsResult>
-```
-
-List the available notification channels.
-
-Only available on Android O or newer (SDK 26+).
-
-**Returns:** <code>Promise&lt;<a href="#listchannelsresult">ListChannelsResult</a>&gt;</code>
-
-**Since:** 1.0.0
-
---------------------
-
-
 ### checkPermissions()
 
 ```typescript
 checkPermissions() => Promise<PermissionStatus>
 ```
 
-Check permission to receive push notifications.
-
 **Returns:** <code>Promise&lt;<a href="#permissionstatus">PermissionStatus</a>&gt;</code>
-
-**Since:** 1.0.0
 
 --------------------
 
@@ -410,28 +348,6 @@ Remove all native listeners for this plugin.
 | **`groupSummary`** | <code>boolean</code> | Designate this notification as the summary for an associated `group`. Only available on Android.                    | 1.0.0 |
 
 
-#### Channel
-
-| Prop              | Type                                              | Description                                                                                                                                                                                                                                                | Since |
-| ----------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| **`id`**          | <code>string</code>                               | The channel identifier.                                                                                                                                                                                                                                    | 1.0.0 |
-| **`name`**        | <code>string</code>                               | The human-friendly name of this channel (presented to the user).                                                                                                                                                                                           | 1.0.0 |
-| **`description`** | <code>string</code>                               | The description of this channel (presented to the user).                                                                                                                                                                                                   | 1.0.0 |
-| **`sound`**       | <code>string</code>                               | The sound that should be played for notifications posted to this channel. Notification channels with an importance of at least `3` should have a sound. The file name of a sound file should be specified relative to the android app `res/raw` directory. | 1.0.0 |
-| **`importance`**  | <code><a href="#importance">Importance</a></code> | The level of interruption for notifications posted to this channel.                                                                                                                                                                                        | 1.0.0 |
-| **`visibility`**  | <code><a href="#visibility">Visibility</a></code> | The visibility of notifications posted to this channel. This setting is for whether notifications posted to this channel appear on the lockscreen or not, and if so, whether they appear in a redacted form.                                               | 1.0.0 |
-| **`lights`**      | <code>boolean</code>                              | Whether notifications posted to this channel should display notification lights, on devices that support it.                                                                                                                                               | 1.0.0 |
-| **`lightColor`**  | <code>string</code>                               | The light color for notifications posted to this channel. Only supported if lights are enabled on this channel and the device supports it. Supported color formats are `#RRGGBB` and `#RRGGBBAA`.                                                          | 1.0.0 |
-| **`vibration`**   | <code>boolean</code>                              | Whether notifications posted to this channel should vibrate.                                                                                                                                                                                               | 1.0.0 |
-
-
-#### ListChannelsResult
-
-| Prop           | Type                   | Since |
-| -------------- | ---------------------- | ----- |
-| **`channels`** | <code>Channel[]</code> | 1.0.0 |
-
-
 #### PermissionStatus
 
 | Prop          | Type                                                        | Since |
@@ -463,16 +379,6 @@ Remove all native listeners for this plugin.
 
 
 ### Type Aliases
-
-
-#### Importance
-
-<code>1 | 2 | 3 | 4 | 5</code>
-
-
-#### Visibility
-
-<code>-1 | 0 | 1</code>
 
 
 #### PermissionState

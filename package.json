@@ -17,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mfbhatt/CapacitorAzureNotificationHub.git"
+    "url": "git+https://github.com/mfbhatt/capacitor-azure-push-notification.git"
   },
   "bugs": {
-    "url": "https://github.com/mfbhatt/CapacitorAzureNotificationHub/issues"
+    "url": "https://github.com/mfbhatt/capacitor-azure-push-notification/issues"
   },
   "keywords": [
     "capacitor",

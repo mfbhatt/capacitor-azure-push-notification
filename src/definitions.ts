@@ -63,38 +63,6 @@ export interface AzurePushNotificationsPlugin {
    */
   removeAllDeliveredNotifications(): Promise<void>;
 
-  /**
-   * Create a notification channel.
-   *
-   * Only available on Android O or newer (SDK 26+).
-   *
-   * @since 1.0.0
-   */
-  createChannel(channel: Channel): Promise<void>;
-
-  /**
-   * Delete a notification channel.
-   *
-   * Only available on Android O or newer (SDK 26+).
-   *
-   * @since 1.0.0
-   */
-  deleteChannel(channel: Channel): Promise<void>;
-
-  /**
-   * List the available notification channels.
-   *
-   * Only available on Android O or newer (SDK 26+).
-   *
-   * @since 1.0.0
-   */
-  listChannels(): Promise<ListChannelsResult>;
-
-  /**
-   * Check permission to receive push notifications.
-   *
-   * @since 1.0.0
-   */
   checkPermissions(): Promise<PermissionStatus>;
 
   /**

@@ -1,5 +1,6 @@
 package com.capacitorjs.plugins.pushnotifications;
 
+import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.microsoft.windowsazure.messaging.NotificationHub;
+
 
 @CapacitorPlugin(name = "AzurePushNotifications", permissions = @Permission(strings = {}, alias = "receive"))
 public class PushNotificationsPlugin extends Plugin {
@@ -90,11 +91,10 @@ public class PushNotificationsPlugin extends Plugin {
     public void register(PluginCall call) {
         String notificationHubName = call.getData().getString("notificationHubName");
         String connectionString =call.getData().getString("connectionString");
+        String deviceTag =call.getData().getString("deviceTag");
 
-        NotificationHub hub = new NotificationHub(notificationHubName, connectionString, getApplicationContext());
-
-        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
-
+        com.microsoft.windowsazure.messaging.notificationhubs.NotificationHub.start(this.getApplication(), notificationHubName, connectionString);
+        com.microsoft.windowsazure.messaging.notificationhubs.NotificationHub.addTag(deviceTag);
 
        FirebaseInstanceId
             .getInstance()
@@ -271,5 +271,8 @@ public class PushNotificationsPlugin extends Plugin {
 
     private Context getApplicationContext() {
         return this.getActivity().getApplicationContext();
+    }
+    private Application getApplication(){
+        return this.getActivity().getApplication();
     }
 }
