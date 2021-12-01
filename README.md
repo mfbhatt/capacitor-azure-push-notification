@@ -1,4 +1,4 @@
-# @mfbhatt/push-notifications
+# push-notifications
 
 The Push Notifications API provides access to native push notifications.
 
