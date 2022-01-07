@@ -17,7 +17,7 @@ import {
   AzurePushNotificationSchema,
   PushNotificationActionPerformed,
   PushNotificationToken,
-} from '@capacitor/azure-push-notifications';
+} from '@mfbhatt/azure-push-notifications';
 ```
 
 ## Usage 
