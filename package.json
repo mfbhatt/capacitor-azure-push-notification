@@ -1,6 +1,6 @@
 {
   "name": "@mfbhatt/azure-push-notifications",
-  "version": "1.0.3",
+  "version": "1.0.9",
   "description": "The Push Notifications API provides access to native Azure push notifications.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
