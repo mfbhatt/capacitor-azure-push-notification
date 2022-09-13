@@ -1,7 +1,7 @@
 {
   "name": "@mfbhatt/azure-push-notifications",
-  "version": "1.0.10",
-  "description": "The Push Notifications API provides access to native Azure push notifications.",
+  "version": "1.0.11",
+  "description": "The Push Notifications API provides access to native Azure push notifications for Capacitor.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -11,7 +11,7 @@
     "android/build.gradle",
     "dist/",
     "ios/Plugin/",
-    "CapacitorPushNotifications.podspec"
+    "CapacitorAzurePushNotifications.podspec"
   ],
   "author": "mfbhatt@gmail.com",
   "license": "MIT",
@@ -78,5 +78,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@mfbhatt/azure-push-notifications": "^1.0.11"
   }
 }

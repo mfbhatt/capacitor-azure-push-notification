@@ -1,6 +1,6 @@
 # push-notifications
 
-The Push Notifications API provides access to native push notifications.
+The Push Notifications API provides access to native push notifications for Capacitor.
 
 ## Install
 
