@@ -41,7 +41,7 @@ AzurePushNotifications.requestPermissions().then((result) => {
     });
 ```
 
-## Listners
+## Listeners
 
 ```js
 AzurePushNotifications.addListener(
