@@ -53,7 +53,7 @@ public class PushNotificationsPlugin: CAPPlugin {
                   }
                 
                 guard let deviceTag = call.options["deviceTag"] as? String else {
-                    call.reject("Must provide connectionString")
+                    call.reject("Must provide deviceTag")
                     return
                   }
         
